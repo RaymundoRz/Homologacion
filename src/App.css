@@ -1,0 +1,492 @@
+/* ---------- Estilos Globales ---------- */
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ---------- Contenedor Principal ---------- */
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+  animation: fadeIn 1s ease-in;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  transition: background 0.3s ease;
+}
+.navbar:hover {
+  background: rgba(0, 0, 0, 0.95);
+}
+.navbar h1 {
+  margin: 0;
+}
+.navbar-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  background: #1f1f1f;
+  width: 220px;
+  padding: 20px;
+  border-right: 2px solid #333;
+  transition: width 0.3s ease;
+  flex-shrink: 0;
+}
+.sidebar:hover {
+  width: 240px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar li {
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 4px;
+}
+.sidebar li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- Main Content ---------- */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---------- Sección de Carga (Upload Section) ---------- */
+.upload-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.upload-section:hover {
+  transform: scale(1.02);
+}
+.upload-section h3 {
+  margin-top: 0;
+}
+.upload-section input[type="file"] {
+  margin-bottom: 5px;
+  background: #2a2a2a;
+  color: #ffffff;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+.upload-section input[type="file"]:hover {
+  background: #333333;
+}
+.upload-section button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* Botones (MUI) con algo de margen y animación */
+.MuiButton-root {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.MuiButton-root:hover {
+  transform: scale(1.05);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Espacio entre botones de footer */
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.6);
+  transition: background 0.3s ease;
+}
+footer:hover {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* ---------- Minimized Windows Bar ---------- */
+.minimized-windows-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.minimized-windows-bar button {
+  background: #333;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+.minimized-windows-bar button:hover {
+  transform: scale(1.05);
+  background: #444;
+}
+
+/* ============================================================
+   BARRA FLOTANTE LATERAL - SOLUCIÓN ALTERNATIVA
+   ============================================================ */
+
+.floating-minimized-bar {
+  position: fixed !important;
+  left: 50% !important;
+  top: 80px !important;
+  transform: translateX(-50%) !important;
+  z-index: 99998 !important;
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%) !important;
+  border: 2px solid #4CAF50 !important;
+  border-radius: 15px !important;
+  padding: 20px !important;
+  min-width: 200px !important;
+  max-width: 250px !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  font-family: Arial, sans-serif !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transition: all 0.3s ease !important;
+}
+
+.floating-minimized-bar.hidden {
+  display: none !important;
+}
+
+.floating-minimized-bar:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.8) !important;
+}
+
+.floating-minimized-title {
+  color: white !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  margin-bottom: 15px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid #4CAF50 !important;
+  white-space: nowrap !important;
+}
+
+.floating-minimized-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+.floating-minimized-empty {
+  color: #888 !important;
+  font-style: italic !important;
+  font-size: 13px !important;
+  text-align: center !important;
+}
+
+.floating-restore-button {
+  background: linear-gradient(145deg, #4CAF50, #45a049) !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 20px !important;
+  font-size: 13px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  width: 100% !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.floating-restore-button::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent) !important;
+  transition: left 0.5s ease !important;
+}
+
+.floating-restore-button:hover {
+  background: linear-gradient(145deg, #45a049, #3d8b40) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4) !important;
+}
+
+.floating-restore-button:hover::before {
+  left: 100% !important;
+}
+
+.floating-restore-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+}
+
+/* Indicador físico siempre visible - VERSIÓN COMPLETAMENTE AISLADA */
+.minimized-indicator {
+  /* Estados base - AISLADO DE OTRAS ANIMACIONES */
+  position: fixed !important;
+  left: 50% !important;
+  top: 20px !important;
+  transform: translateX(-50%) !important;
+  z-index: 99999 !important;
+  /* FORZAR POSICIÓN ABSOLUTA RESPECTO A LA VENTANA */
+  left: auto !important;
+  bottom: auto !important;
+  border-radius: 50% !important;
+  width: 35px !important;
+  height: 35px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  border: 2px solid white !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+  /* SIN TRANSICIONES PARA EVITAR CONFLICTOS */
+  /* Estado por defecto: inactivo */
+  background: #666666 !important;
+  color: #cccccc !important;
+  cursor: default !important;
+  /* AISLAMIENTO TOTAL */
+  transform: none !important;
+  will-change: auto !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+}
+
+/* Estado activo cuando hay ventanas minimizadas - AISLADO */
+.minimized-indicator.active {
+  background: #ff6b6b !important;
+  color: white !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(255,107,107,0.4) !important;
+  /* AISLAMIENTO TOTAL */
+  transform: none !important;
+  will-change: auto !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+}
+
+/* Estado inactivo cuando no hay ventanas minimizadas - AISLADO */
+.minimized-indicator.inactive {
+  background: #666666 !important;
+  color: #cccccc !important;
+  cursor: default !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+  /* AISLAMIENTO TOTAL */
+  transform: none !important;
+  will-change: auto !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+}
+
+/* Hover solo cuando está activo - SIN TRANSFORMACIONES */
+.minimized-indicator.active:hover {
+  background: #ff5252 !important;
+  box-shadow: 0 6px 16px rgba(255,107,107,0.6) !important;
+  /* SIN TRANSFORMACIONES PARA EVITAR CONFLICTOS */
+  transform: none !important;
+}
+
+/* Hover cuando está inactivo (sin efecto) - AISLADO */
+.minimized-indicator.inactive:hover {
+  background: #666666 !important;
+  color: #cccccc !important;
+  /* AISLAMIENTO TOTAL */
+  transform: none !important;
+  will-change: auto !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+}
+
+/* ELIMINAR LA ANIMACIÓN PULSE COMPLETAMENTE */
+/* @keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+} */
+
+/* ============================================================
+   AISLAMIENTO TOTAL DEL INDICADOR DE OTRAS ANIMACIONES
+   ============================================================ */
+
+/* Regla específica para aislar el indicador de cualquier animación externa */
+.minimized-indicator,
+.minimized-indicator *,
+.minimized-indicator::before,
+.minimized-indicator::after {
+  /* DESHABILITAR TODAS LAS ANIMACIONES EXTERNAS */
+  animation: none !important;
+  animation-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-fill-mode: none !important;
+  animation-iteration-count: 1 !important;
+  animation-name: none !important;
+  animation-play-state: running !important;
+  animation-timing-function: ease !important;
+  
+  /* DESHABILITAR TRANSFORMACIONES EXTERNAS */
+  transform: none !important;
+  transform-origin: center !important;
+  transform-style: flat !important;
+  
+  /* AISLAMIENTO DE CONTEXTO */
+  isolation: isolate !important;
+  contain: layout style paint !important;
+  
+  /* EVITAR CONFLICTOS DE RENDERIZADO */
+  will-change: auto !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+  perspective-origin: center !important;
+  
+  /* EVITAR INFLUENCIAS DE PADRES */
+  position: relative !important;
+  z-index: 99999 !important;
+}
+
+/* REGLA ESPECÍFICA PARA FORZAR POSICIÓN CORRECTA */
+.minimized-indicator {
+  position: fixed !important;
+  top: 20px !important;
+  right: 120px !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: 99999 !important;
+  /* FORZAR POSICIÓN RESPECTO A LA VENTANA DEL NAVEGADOR */
+  position: fixed !important;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  /* SACAR COMPLETAMENTE DEL FLUJO DEL DOCUMENTO */
+  float: none !important;
+  clear: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  /* FORZAR POSICIÓN ABSOLUTA RESPECTO AL VIEWPORT */
+  position: fixed !important;
+  top: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Botón de cerrar barra flotante */
+.floating-close-button {
+  background: none !important;
+  border: none !important;
+  color: #ff6b6b !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  padding: 5px !important;
+  border-radius: 50% !important;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: bold !important;
+  transition: all 0.2s ease !important;
+}
+
+.floating-close-button:hover {
+  background-color: rgba(255, 107, 107, 0.1) !important;
+  color: #ff5252 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Eliminar la barra inferior anterior */
+.minimized-windows-bar {
+  display: none !important;
+}
+
+/* ============================================================
+   FIN BARRA FLOTANTE LATERAL
+   ============================================================ */
+
+/* ---------- Ventanas Flotantes ---------- */
+.floating-windows-container {
+  position: relative;
+  z-index: 1000;
+}
+.floating-window {
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+  animation: slideIn 0.5s ease-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- DataGrid (MUI) ---------- */
+.MuiDataGrid-root {
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.MuiDataGrid-cell {
+  transition: background-color 0.3s;
+}
+.MuiDataGrid-cell:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+.difference-cell {
+  background-color: #ffebee !important; 
+  color: #d32f2f !important;
+  font-weight: bold !important;
+  border: 2px solid #d32f2f !important;
+} 
