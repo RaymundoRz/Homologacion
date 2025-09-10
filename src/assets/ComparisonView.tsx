@@ -903,13 +903,38 @@ function ComparisonView() {
                return;
              }
              
-             const { displayData, differences, error, debugExamples: examples, type, message, timestamp } = event.data;
+             const { displayData, differences, error, debugExamples: examples, type, message, timestamp, data, filename } = event.data;
              
              // Capturar logs del worker
              if (type === 'LOG') {
                const logEntry = `[${timestamp}] ${message}`;
                console.log(`📝 LOG WORKER: ${message}`);
                setLogs(prev => [...prev, logEntry]);
+               return;
+             }
+
+             // Descargar artefactos de diagnóstico
+             if (type === 'DIAGNOSTIC_EXCEL' || type === 'DIAGNOSTIC_JSON' || type === 'ERROR_DIAGNOSTIC' || type === 'DIAGNOSTIC_DOWNLOAD') {
+               console.log(`📊 RECIBIENDO DIAGNÓSTICO: ${type}`, { filename, dataLength: data?.length });
+               try {
+                 const blob = new Blob([data], { 
+                   type: type === 'DIAGNOSTIC_EXCEL' 
+                     ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' 
+                     : 'application/json' 
+                 });
+                 const url = URL.createObjectURL(blob);
+                 const a = document.createElement('a');
+                 a.href = url;
+                 a.download = filename || `diagnostic_${Date.now()}.${type === 'DIAGNOSTIC_EXCEL' ? 'xlsx' : 'json'}`;
+                 document.body.appendChild(a);
+                 a.click();
+                 document.body.removeChild(a);
+                 URL.revokeObjectURL(url);
+                 console.log(`📊 DIAGNÓSTICO DESCARGADO: ${a.download}`);
+               } catch (e) {
+                 console.warn('No se pudo descargar diagnóstico:', e);
+               }
+               // Importante: estos mensajes no traen displayData, salimos aquí
                return;
              }
              
